@@ -1,3 +1,6 @@
+/**
+ * Created by hien.phanthe on 2/23/17.
+ */
 
 import React, { Component } from 'react';
 import {
@@ -11,7 +14,9 @@ import {
     TouchableHighlight
 } from 'react-native';
 
-import CircleImageView from './components/CircleImageView'
+import CircleImageView from '../components/CircleImageView'
+import CustomTextInput from '../components/CustomTextInput'
+
 const win = Dimensions.get('window');
 
 const icon_username = require('src/assets/images/user_name.png');
@@ -34,18 +39,16 @@ const styles = StyleSheet.create({
         width: win.width,
         height: win.height,
     },
-    icon: {
-        width: 20,
-        height: 20
-    },
+
     wrapper: {
-        flex: 1
+        flex: 1,
     },
     iconWrap : {
         paddingHorizontal: 5,
         paddingLeft: 20,
         alignItems: "center",
         justifyContent: "center",
+        width: 40
     },
     inputWrap: {
         flexDirection: "row",
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
     },
     buttonFullWidth : {
         marginTop: 30,
-        backgroundColor: 'red',
+        backgroundColor: '#ff3366',
         height: 60,
         alignItems: "center",
         justifyContent: "center",
@@ -89,10 +92,10 @@ const styles = StyleSheet.create({
 });
 
 
-export default class LoginScreen extends Component {
+export default class SignInScreen extends Component {
     render() {
         return (
-            <Image  style= { [styles.container, styles.image] } source={require('./assets/images/bg_signin.png')}>
+            <Image  style= { [styles.container, styles.image] } source={require('images/bg_signin.png')}>
                 <View  style={[styles.halfHeight, { backgroundColor : 'transparent',  justifyContent: 'center', alignItems: 'center',}] }>
                     <CircleImageView />
                 </View>
@@ -100,29 +103,13 @@ export default class LoginScreen extends Component {
 
                 <View style={ [styles.quarterHeight, { backgroundColor : 'transparent'}] }>
                     <View style={styles.wrapper}>
-                        <View style={styles.inputWrap}>
-                            <View style={styles.iconWrap}>
-                                <Image source={icon_username} style={styles.icon} resizeMode="contain" />
-                            </View>
-                            <TextInput
-                                placeholder="Username"
-                                underlineColorAndroid="transparent"
-                                placeholderTextColor="#FFF"
-                                style={styles.input}
-                            />
-                        </View>
-                        <View style={styles.inputWrap}>
-                            <View style={styles.iconWrap}>
-                                <Image source={icon_password} style={styles.icon} resizeMode="contain" />
-                            </View>
-                            <TextInput
-                                placeholderTextColor="#FFF"
-                                placeholder="Password"
-                                underlineColorAndroid="transparent"
-                                style={ [styles.input]}
-                                secureTextEntry
-                            />
-                        </View>
+
+                        <CustomTextInput imageIcon={icon_username} placeholder="Username" placeholderTextColor="#FFF" />
+                        <CustomTextInput imageIcon={icon_password}
+                                         secureTextEntry = {true}
+                                         placeholder="Password"
+                                         placeholderTextColor="#FFF" />
+
                         <View style={styles.rightWrap}>
                             <TouchableHighlight>
                                 <Text style={ [styles.textColor, styles.bigSize ]}>Forgot Password</Text>
@@ -130,22 +117,21 @@ export default class LoginScreen extends Component {
                         </View>
                     </View>
                 </View>
-                    <View style={ [styles.quarterHeight, { backgroundColor : 'transparent' } ] }>
-                        <View style={styles.buttonFullWidth}>
-                            <TouchableHighlight>
-                                <Text style={ [styles.textColor, styles.bigSize ] }>Sign In</Text>
-                            </TouchableHighlight>
-                        </View>
-
-                        <View style={styles.bottom}>
-                            <Text style={ styles.textColor }>Don't have an account? </Text>
-                                <TouchableHighlight>
-                                    <Text  style={ [ styles.textColor, styles.bigSize ]}>Sign Up</Text>
-                                </TouchableHighlight>
-                            </Text>
-                        </View>
-
+                <View style={ [styles.quarterHeight, { backgroundColor : 'transparent' } ] }>
+                    <View style={styles.buttonFullWidth}>
+                        <TouchableHighlight>
+                            <Text style={ [styles.textColor, styles.bigSize ] }>Sign In</Text>
+                        </TouchableHighlight>
                     </View>
+
+                    <View style={styles.bottom}>
+                        <Text style={ styles.textColor } >Don't have an account? </Text>
+                            <TouchableHighlight>
+                                <Text  style={ [ styles.textColor, styles.bigSize ]}>Sign Up</Text>
+                            </TouchableHighlight>
+                    </View>
+
+                </View>
             </Image>
         )
     }
