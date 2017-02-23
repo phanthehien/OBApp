@@ -140,8 +140,9 @@ export default class LoginScreen extends Component {
                         <View style={styles.bottom}>
                             <Text style={ styles.textColor }>Don't have an account? </Text>
                                 <TouchableHighlight>
-                                    <Text  style={ [styles.textColor, styles.bigSize ] }>Sign Up</Text>
+                                    <Text  style={ [ styles.textColor, styles.bigSize ]}>Sign Up</Text>
                                 </TouchableHighlight>
+                            </Text>
                         </View>
 
                     </View>
