@@ -11,7 +11,9 @@ import {
     Image,
     Dimensions,
     TextInput,
-    TouchableHighlight
+    TouchableHighlight,
+    TouchableOpacity,
+    Alert,
 } from 'react-native';
 
 import { bindActionCreators} from 'redux'
@@ -49,30 +51,14 @@ const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
     },
-    iconWrap : {
-        paddingHorizontal: 5,
-        paddingLeft: 20,
-        alignItems: "center",
-        justifyContent: "center",
-        width: 40
-    },
-    inputWrap: {
-        flexDirection: "row",
-        paddingHorizontal: 5,
-        marginVertical: 10,
-        height: 40,
-        borderBottomWidth: 1,
-        borderBottomColor: "#CCC"
-    },
+
     rightWrap:{
         flexDirection: "row",
         height: 40,
         alignSelf:'flex-end',
         marginHorizontal: 20,
     },
-    input : {
-        flex: 1,
-    },
+
     buttonFullWidth : {
         marginTop: 30,
         backgroundColor: '#ff3366',
@@ -98,6 +84,28 @@ const styles = StyleSheet.create({
 });
 
 class SignInScreen extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            username: 'hien.phanthe',
+            password: '123456'
+        }
+    }
+
+    updateUsername = (text) => {
+        this.setState({username: text});
+        //this.state.username = text;
+    };
+
+    updatePassword = (text) => {
+        this.setState({password: text});
+    };
+
+    showMessage = () => {
+        Alert.alert('Info', `${this.state.username} : ${this.state.password}`)
+    };
+
     render() {
         const { actions } = this.props;
 
@@ -110,8 +118,14 @@ class SignInScreen extends Component {
 
                 <View style={ [styles.quarterHeight, { backgroundColor : 'transparent'}] }>
                     <View style={styles.wrapper}>
-                        <CustomTextInput imageIcon={icon_username} placeholder="Username" placeholderTextColor="#FFF" />
-                        <CustomTextInput imageIcon={icon_password}
+                        <CustomTextInput onChangeText= { this.updateUsername}
+                                         value= { this.state.username }
+                                         imageIcon={icon_username}
+                                         placeholder="Username"
+                                         placeholderTextColor="#FFF" />
+                        <CustomTextInput onChangeText= { this.updatePassword }
+                                         value= { this.state.password }
+                                         imageIcon={icon_password}
                                          secureTextEntry = {true}
                                          placeholder="Password"
                                          placeholderTextColor="#FFF" />
@@ -125,9 +139,9 @@ class SignInScreen extends Component {
                 </View>
                 <View style={ [styles.quarterHeight, { backgroundColor : 'transparent' } ] }>
                     <View style={styles.buttonFullWidth}>
-                        <TouchableHighlight>
+                        <TouchableOpacity onPress={ this.showMessage }>
                             <Text style={ [styles.textColor, styles.bigSize ] }>Sign In</Text>
-                        </TouchableHighlight>
+                        </TouchableOpacity>
                     </View>
 
                     <View style={styles.bottom}>

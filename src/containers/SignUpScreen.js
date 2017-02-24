@@ -101,6 +101,12 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         fontSize: 40,
         color: 'white'
+    },
+    backButtonImage : {
+        marginTop: 20,
+        marginLeft: 20,
+        width: 30,
+        height: 30
     }
 });
 
@@ -111,7 +117,7 @@ export default class SignInScreen extends Component {
             <Image  style= { [styles.container, styles.image] } source={require('images/bg_signup.png')}>
 
                 <TouchableHighlight onPress={ Actions.pop }>
-                    <Text  style={ [ styles.textColor, styles.titleSize ]}> &lt; </Text>
+                    <Image style = { styles.backButtonImage } source={require('images/back.png')} />
                 </TouchableHighlight>
 
                 <View  style={[styles.fifthHeight, { backgroundColor : 'transparent',  justifyContent: 'center', alignItems: 'flex-start',}] }>

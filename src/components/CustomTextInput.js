@@ -55,11 +55,9 @@ export default class CustomTextInput extends React.Component {
                     <Image source={this.props.imageIcon} style={styles.icon} resizeMode="contain" />
                 </View>
                 <TextInput
-                    placeholder={ this.props.placeholder }
+                    {...this.props}
                     underlineColorAndroid="transparent"
-                    placeholderTextColor={ this.props.placeholderTextColor }
                     style={styles.input}
-                    secureTextEntry={this.props.secureTextEntry || false}
                 />
             </View>
 		);
@@ -67,9 +65,10 @@ export default class CustomTextInput extends React.Component {
 }
 
  CustomTextInput.propTypes = {
-     textColor: PropTypes.string,
      imageIcon: PropTypes.number.isRequired,
-     secureTextEntry: PropTypes.bool,
-     placeholderTextColor: PropTypes.string,
-     placeholder: PropTypes.string,
+     // secureTextEntry: PropTypes.bool,
+     // placeholderTextColor: PropTypes.string,
+     // placeholder: PropTypes.string,
+
+     //updated to the this.props to use the app.
  };
