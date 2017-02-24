@@ -16,11 +16,14 @@ import {
 
 import CircleImageView from '../components/CircleImageView'
 import CustomTextInput from '../components/CustomTextInput'
+import { Actions } from 'react-native-router-flux'
 
 const win = Dimensions.get('window');
 
 const icon_username = require('src/assets/images/user_name.png');
 const icon_password = require('src/assets/images/password.png');
+const icon_email = require('src/assets/images/email.png');
+const icon_birthday = require('src/assets/images/birthday.png');
 
 const styles = StyleSheet.create({
     container: {
@@ -30,6 +33,10 @@ const styles = StyleSheet.create({
     halfHeight: {
         flex: .5,
         backgroundColor: '#FF3366'
+    },
+    fifthHeight: {
+        flex: .20,
+        backgroundColor: '#000'
     },
     quarterHeight: {
         flex: .25,
@@ -88,6 +95,12 @@ const styles = StyleSheet.create({
     },
     bigSize : {
         fontWeight: 'bold'
+    },
+
+    titleSize : {
+        marginLeft: 20,
+        fontSize: 40,
+        color: 'white'
     }
 });
 
@@ -95,39 +108,43 @@ const styles = StyleSheet.create({
 export default class SignInScreen extends Component {
     render() {
         return (
-            <Image  style= { [styles.container, styles.image] } source={require('images/bg_signin.png')}>
-                <View  style={[styles.halfHeight, { backgroundColor : 'transparent',  justifyContent: 'center', alignItems: 'center',}] }>
-                    <CircleImageView />
+            <Image  style= { [styles.container, styles.image] } source={require('images/bg_signup.png')}>
+
+                <TouchableHighlight onPress={ Actions.pop }>
+                    <Text  style={ [ styles.textColor, styles.titleSize ]}> &lt; </Text>
+                </TouchableHighlight>
+
+                <View  style={[styles.fifthHeight, { backgroundColor : 'transparent',  justifyContent: 'center', alignItems: 'flex-start',}] }>
+                    <Text style={ [styles.titleSize] }>Sign Up</Text>
                 </View>
 
 
-                <View style={ [styles.quarterHeight, { backgroundColor : 'transparent'}] }>
+                <View style={ [styles.halfHeight, { backgroundColor : 'transparent'}] }>
                     <View style={styles.wrapper}>
 
                         <CustomTextInput imageIcon={icon_username} placeholder="Username" placeholderTextColor="#FFF" />
+                        <CustomTextInput imageIcon={icon_email} placeholder="Email" placeholderTextColor="#FFF" />
+
                         <CustomTextInput imageIcon={icon_password}
                                          secureTextEntry = {true}
                                          placeholder="Password"
                                          placeholderTextColor="#FFF" />
 
-                        <View style={styles.rightWrap}>
-                            <TouchableHighlight>
-                                <Text style={ [styles.textColor, styles.bigSize ]}>Forgot Password</Text>
-                            </TouchableHighlight>
-                        </View>
+                        <CustomTextInput imageIcon={icon_birthday} placeholder="Birthday" placeholderTextColor="#FFF" />
+
                     </View>
                 </View>
                 <View style={ [styles.quarterHeight, { backgroundColor : 'transparent' } ] }>
                     <View style={styles.buttonFullWidth}>
                         <TouchableHighlight>
-                            <Text style={ [styles.textColor, styles.bigSize ] }>Sign In</Text>
+                            <Text style={ [styles.textColor, styles.bigSize ] }>Join</Text>
                         </TouchableHighlight>
                     </View>
 
                     <View style={styles.bottom}>
-                        <Text style={ styles.textColor } >Don't have an account? </Text>
-                            <TouchableHighlight>
-                                <Text  style={ [ styles.textColor, styles.bigSize ]}>Sign Up</Text>
+                        <Text style={ styles.textColor } >Already have an account? </Text>
+                            <TouchableHighlight onPress={ Actions.pop }>
+                                <Text  style={ [ styles.textColor, styles.bigSize ]}>Sign In</Text>
                             </TouchableHighlight>
                     </View>
 
