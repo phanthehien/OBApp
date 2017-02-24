@@ -31,13 +31,13 @@ export default class AppDemo extends Component {
     return (
 
         <Provider store={store}>
-        <Router >
-        <Scene key="root" hideNavBar={true}>
-          <Scene  intital={true} key="signIn" component={SignInScreen}/>
-          <Scene  key="signUp" component={SignUpScreen}/>
-        </Scene>
-        </Router>
-          </Provider>
+          <Router >
+            <Scene key="root" hideNavBar={true}>
+              <Scene  intital={true} key="signIn" component={SignInScreen}/>
+              <Scene  key="signUp" component={SignUpScreen}/>
+            </Scene>
+          </Router>
+        </Provider>
     );
   }
 }
