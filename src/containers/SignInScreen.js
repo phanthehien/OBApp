@@ -102,9 +102,14 @@ class SignInScreen extends Component {
         this.setState({password: text});
     };
 
-    showMessage = () => {
+    navigateSignIn = () => {
+        this.props.navigator.push({ index : 1 });
+    };
+
+    showMessage() {
         Alert.alert('Info', `${this.state.username} : ${this.state.password}`)
     };
+
 
     render() {
         const { actions } = this.props;
@@ -146,7 +151,7 @@ class SignInScreen extends Component {
 
                     <View style={styles.bottom}>
                         <Text style={ styles.textColor } >Don't have an account? </Text>
-                        <TouchableHighlight onPress={Actions.signUp}>
+                        <TouchableHighlight onPress={ this.navigateSignIn }>
                                 <Text  style={ [ styles.textColor, styles.bigSize ]}>Sign Up</Text>
                         </TouchableHighlight>
                     </View>

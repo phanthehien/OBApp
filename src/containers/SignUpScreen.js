@@ -106,17 +106,17 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginLeft: 20,
         width: 30,
-        height: 30
+        height: 30,
+
     }
 });
 
 
-export default class SignInScreen extends Component {
+export default class SignUpScreen extends Component {
     render() {
         return (
             <Image  style= { [styles.container, styles.image] } source={require('images/bg_signup.png')}>
-
-                <TouchableHighlight onPress={ Actions.pop }>
+                <TouchableHighlight onPress={ () => this.props.navigator.pop() } underlayColor = 'transparent' >
                     <Image style = { styles.backButtonImage } source={require('images/back.png')} />
                 </TouchableHighlight>
 
@@ -149,7 +149,7 @@ export default class SignInScreen extends Component {
 
                     <View style={styles.bottom}>
                         <Text style={ styles.textColor } >Already have an account? </Text>
-                            <TouchableHighlight onPress={ Actions.pop }>
+                            <TouchableHighlight onPress={ this.props.navigator.pop }>
                                 <Text  style={ [ styles.textColor, styles.bigSize ]}>Sign In</Text>
                             </TouchableHighlight>
                     </View>
