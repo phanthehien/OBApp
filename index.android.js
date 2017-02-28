@@ -15,7 +15,6 @@ import {
 import { applyMiddleware, createStore, combineReducers } from 'redux';
 import { Provider} from 'react-redux'
 import thunk from 'redux-thunk'
-import {Scene, Router} from 'react-native-router-flux';
 
 import * as reducers from './src/reducers';
 

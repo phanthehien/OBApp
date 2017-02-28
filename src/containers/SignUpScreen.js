@@ -116,7 +116,7 @@ export default class SignUpScreen extends Component {
     render() {
         return (
             <Image  style= { [styles.container, styles.image] } source={require('images/bg_signup.png')}>
-                <TouchableHighlight onPress={ () => this.props.navigator.pop() } underlayColor = 'transparent' >
+                <TouchableHighlight onPress={ Actions.pop } underlayColor = 'transparent' >
                     <Image style = { styles.backButtonImage } source={require('images/back.png')} />
                 </TouchableHighlight>
 
@@ -149,7 +149,7 @@ export default class SignUpScreen extends Component {
 
                     <View style={styles.bottom}>
                         <Text style={ styles.textColor } >Already have an account? </Text>
-                            <TouchableHighlight onPress={ this.props.navigator.pop }>
+                            <TouchableHighlight onPress={ Actions.pop }>
                                 <Text  style={ [ styles.textColor, styles.bigSize ]}>Sign In</Text>
                             </TouchableHighlight>
                     </View>

@@ -11,9 +11,8 @@ import { Provider} from 'react-redux'
 import thunk from 'redux-thunk'
 import {Scene, Router} from 'react-native-router-flux';
 
-import * as reducers from './src/reducers';
-import SignInScreen from './src/containers/SignInScreen';
-import SignUpScreen from './src/containers/SignUpScreen'
+// import * as reducers from './src/reducers';
+import rootReducer from './src/redux/RootReducer'
 import RootScreen from './src/containers/RootScreen';
 
 import {
@@ -24,8 +23,8 @@ import {
 } from 'react-native';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const reducer = combineReducers(reducers);
-const store = createStoreWithMiddleware(reducer);
+// const reducer = combineReducers(reducers);
+const store = createStore(rootReducer);
 
 export default class AppDemo extends Component {
   render() {
