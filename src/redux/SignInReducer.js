@@ -6,6 +6,7 @@
 const REQUEST = 'Request';
 const SUCCESS = 'Success';
 const FAILED = 'Failed';
+const LOG_OUT = "Logout";
 
 //2. Action Creators
 export function loginRequest() {
@@ -28,6 +29,12 @@ export function loginRequestFailed(error) {
     };
 }
 
+export function logout() {
+    return {
+        type: LOG_OUT
+    }
+}
+
 //3. Reducers
 const INITIAL_STATE = {
     error: '',
@@ -45,6 +52,7 @@ export function SignInReducer(state = INITIAL_STATE, action) {
             };
 
         case SUCCESS:
+            // return action.payload;
             return {
                 ...state,
                 loading: false,
@@ -59,6 +67,12 @@ export function SignInReducer(state = INITIAL_STATE, action) {
                 error: 'there is an error'
             };
 
+        case LOG_OUT:
+            return {
+                loading: false,
+                error: '',
+                userInfo: null
+            };
         default:
             return state;
 

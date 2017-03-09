@@ -6,7 +6,7 @@
 import { combineReducers } from 'redux'
 import { SignInReducer } from './SignInReducer'
 import { HomeReducer } from './HomeReducer'
-
+import { CandidateReducer } from './CandidateReducer'
 
 export function TestMessageReducer(state, action) {
     return {
@@ -19,7 +19,8 @@ export function TestMessageReducer(state, action) {
 const rootReducer = combineReducers({
     SignInReducer,
     TestMessageReducer,
-    HomeReducer
+    HomeReducer,
+    CandidateReducer
 });
 
 export default rootReducer;

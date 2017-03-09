@@ -12,6 +12,8 @@ import {Scene, Router} from 'react-native-router-flux';
 import SignInScreen from './SignInScreen'
 import SignUpScreen from './SignUpScreen'
 import HomeScreen from './HomeScreen'
+import CandidateScreen from './CandidateScreen'
+import FormModal from './FormModal'
 
 
 export default class RootScreen extends Component {
@@ -41,6 +43,9 @@ export default class RootScreen extends Component {
 				<Scene  intital={true} key="signIn" component={SignInScreen}/>
 				<Scene  key="signUp" component={SignUpScreen}/>
 				<Scene  key="home" component={HomeScreen}/>
+				<Scene  key="candidate" component={CandidateScreen}/>
+
+				<Scene key='formModal' component={FormModal} />
 			</Scene>
 		</Router>
 

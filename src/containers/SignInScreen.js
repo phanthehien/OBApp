@@ -19,11 +19,12 @@ import {
 
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-// import * as signInActions from '../actions/signInActions'
+
 import CircleImageView from '../components/CircleImageView'
 import CustomTextInput from '../components/CustomTextInput'
-import {Actions} from 'react-native-router-flux'
-import {login} from '../redux/SignInLogic'
+import { Actions } from 'react-native-router-flux'
+import { login, signInAsync } from '../redux/SignInLogic'
+import * as candidateActions from '../actions/candidateActions'
 
 const win = Dimensions.get('window');
 
@@ -115,14 +116,8 @@ class SignInScreen extends Component {
         this.props.loginScreen({username: this.state.username, password: this.state.password});
     };
 
-
     render() {
         const {actions} = this.props;
-
-        if (this.props.userInfo) {
-            // Actions.signUp();
-
-        }
 
         return (
             <Image style={ [styles.container, styles.image] } source={require('images/bg_signin.png')}>
@@ -177,12 +172,10 @@ class SignInScreen extends Component {
             </Image>
         )
     }
-}
-;
+};
 
 export default connect(state => ({
-    message: state.SignInReducer.error,
-    userInfo: state.SignInReducer.userInfo
+    message: state.error,
 }), (dispatch) => ({
-    loginScreen: (userCredentials) => dispatch(login(userCredentials))
+    loginScreen: (userCredentials) => dispatch(signInAsync(userCredentials))
 }))(SignInScreen);

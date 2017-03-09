@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 
-import { applyMiddleware, createStore, combineReducers } from 'redux';
+import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
 import { Provider} from 'react-redux'
 import thunk from 'redux-thunk'
 import {Scene, Router} from 'react-native-router-flux';
@@ -14,6 +14,11 @@ import {Scene, Router} from 'react-native-router-flux';
 // import * as reducers from './src/reducers';
 import rootReducer from './src/redux/RootReducer'
 import RootScreen from './src/containers/RootScreen';
+import devTools from 'remote-redux-devtools';
+import logger from './src/middlewares/logger'
+import checkAuthorize from './src/middlewares/checkAuthorize'
+
+import  { Platform } from 'react-native'
 
 import {
   AppRegistry,
@@ -22,9 +27,28 @@ import {
   View
 } from 'react-native';
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+// const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+
+let store;
+if (__DEV__) {
+    const enhancer = compose(
+        applyMiddleware(checkAuthorize,logger, thunk),
+        devTools({
+            name: Platform.OS,
+            hostname: 'localhost',
+            port: 5678
+        })
+    );
+    store = createStore(rootReducer, enhancer);
+} else {
 // const reducer = combineReducers(reducers);
-const store = createStore(rootReducer);
+    const createStoreWithMiddleware = applyMiddleware(checkAuthorize, logger, thunk)(createStore);
+    store = createStoreWithMiddleware(rootReducer);
+}
+
+store.subscribe(() => {
+    console.log(store.getState())
+});
 
 export default class AppDemo extends Component {
   render() {

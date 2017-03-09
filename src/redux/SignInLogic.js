@@ -2,9 +2,12 @@
  * Created by hien.phanthe on 2/27/17.
  */
 
-import * as actions from './SignInReducer'
+import * as signInActions from './SignInReducer'
+
 
 import {Actions} from 'react-native-router-flux'
+import OBService from '../network/OBService';
+
 
 //it will always return action creators (just the plain object)
 
@@ -17,12 +20,30 @@ const userInfo = {
     token: '1231jfksfnmcnsoijejrksl34324'
 };
 
+export function signInAsync(usercredential) {
+    return (dispatch, getState) => {
+        return OBService.signin(usercredential).then( json => {
+            console.log('User logged in', json);
+            dispatch(signInActions.loginRequestSuccess(json));
+            Actions.home();
+        }
+            ).catch(error => {
+            console.log('Error when signIn', error)
+            dispatch(signInActions.loginRequestFailed({ ...error , message : 'error when login' }));
+        });
+    };
+}
+
 
 export function login(userCredentials) {
     if (userCredentials.username === "hienphan" && userCredentials.password === "123") {
         Actions.home();
-        return actions.loginRequestSuccess(userInfo);
+        return signInActions.loginRequestSuccess(userInfo);
     } else {
-        return actions.loginRequestFailed({ message: "There is no user" });
+        return signInActions.loginRequestFailed({ message: "There is no user" });
     }
+}
+
+export function logout() {
+    return signInActions.logout();
 }
